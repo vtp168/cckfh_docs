@@ -17,6 +17,6 @@ yarn-error.log
 /.vscode
 storage/app/Documents/
 storage/framework/cache/
-public/assets/angular
+
 public/images
 .env
