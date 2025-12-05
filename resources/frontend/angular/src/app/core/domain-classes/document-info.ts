@@ -7,6 +7,11 @@ export interface DocumentInfo {
   id?: string;
   name?: string;
   url?: string;
+  letter_no?: string;
+  letter_date?: Date;
+  number_in?: string;
+  doc_from?: string;
+  dateline?: Date;
   description?: string;
   createdDate?: Date;
   createdBy?: string;

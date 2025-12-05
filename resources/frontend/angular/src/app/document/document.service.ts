@@ -36,6 +36,11 @@ export class DocumentService {
     );
     const url = `document`;
     const formData = new FormData();
+    formData.append('letter_no', document.letter_no);
+    //formData.append('letter_date', document.letterDate?.toISOString() ?? '');
+    formData.append('number_in', document.number_in);
+    formData.append('doc_from', document.doc_from);
+    formData.append('dateline', document.dateline?.toISOString() ?? '');
     formData.append('uploadFile', document.fileData);
     formData.append('name', document.name);
     formData.append('categoryId', document.categoryId);

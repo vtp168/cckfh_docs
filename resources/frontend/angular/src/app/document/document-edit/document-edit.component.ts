@@ -66,6 +66,11 @@ export class DocumentEditComponent extends BaseComponent implements OnInit {
 
   patchDocumentForm() {
     this.documentForm.patchValue({
+      letter_no: this.data.document.letterNo,
+      letter_date: this.data.document.letterDate,
+      number_in: this.data.document.numberIn,
+      doc_from: this.data.document.docFrom,
+      dateline: this.data.document.dateline,
       name: this.data.document.name,
       description: this.data.document.description,
       categoryId: this.data.document.categoryId,
@@ -75,6 +80,11 @@ export class DocumentEditComponent extends BaseComponent implements OnInit {
 
   createDocumentForm() {
     this.documentForm = this.fb.group({
+      letter_no: ['', [Validators.required]],
+      letter_date: [''],
+      number_in: [''],
+      doc_from: [''],
+      dateline: [''],
       name: ['', [Validators.required]],
       description: [''],
       categoryId: ['', [Validators.required]],
@@ -139,6 +149,11 @@ export class DocumentEditComponent extends BaseComponent implements OnInit {
   buildDocumentObject(): DocumentInfo {
     const documentMetaTags = this.documentMetaTagsArray.value;
     const document: DocumentInfo = {
+      letter_no: this.documentForm.get('letter_no').value,
+      letter_date: this.documentForm.get('letter_date').value,
+      number_in: this.documentForm.get('number_in').value,
+      doc_from: this.documentForm.get('doc_from').value,
+      dateline: this.documentForm.get('dateline').value,
       id: this.data.document.id,
       categoryId: this.documentForm.get('categoryId').value,
       description: this.documentForm.get('description').value,

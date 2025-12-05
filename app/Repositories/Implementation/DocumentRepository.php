@@ -46,6 +46,7 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
 
         $query = Documents::select([
             'documents.id', 'documents.name', 'documents.url', 'documents.createdDate', 'documents.description', 'documents.location',
+            'documents.letter_no','documents.letter_date','documents.number_in','documents.doc_from','documents.dateline',
             'categories.id as categoryId', 'categories.name as categoryName',
             DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName")
         ])
@@ -159,6 +160,11 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
             $model->location = $request->location;
             $model->description = $request->description;
             $metaDatas = $request->documentMetaDatas;
+            $model->letter_no=$request->letter_no;
+            $model->doc_from=$request->doc_from;
+            $model->dateline=$request->dateline;
+            $model->letter_date=$request->letter_date;
+            $model->number_in=$request->number_in;
             $model->save();
             $this->resetModel();
             $result = $this->parseResult($model);
@@ -285,6 +291,11 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
             $model->name = $request->name;
             $model->description = $request->description;
             $model->categoryId = $request->categoryId;
+            $model->letter_no=$request->letter_no;
+            $model->doc_from=$request->doc_from;
+            $model->dateline=$request->dateline;
+            $model->letter_date=$request->letter_date;
+            $model->number_in=$request->number_in;
             $metaDatas = $request->documentMetaDatas;
             $model->save();
             $this->resetModel();
@@ -319,6 +330,7 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
         $query = Documents::select([
             'documents.id', 'documents.name', 'documents.url', 'documents.createdDate', 'documents.description',
             'categories.id as categoryId', 'categories.name as categoryName', 'documents.location',
+            'documents.letter_no','documents.letter_date','documents.number_in','documents.doc_from','documents.dateline',
             DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName"),
             DB::raw("(SELECT max(documentUserPermissions.endDate) FROM documentUserPermissions
                      WHERE documentUserPermissions.documentId = documents.id and documentUserPermissions.isTimeBound =1
@@ -632,5 +644,5 @@ class DocumentRepository extends BaseRepository implements DocumentRepositoryInt
 
     //get document by id with comments
 
-    
+
 }

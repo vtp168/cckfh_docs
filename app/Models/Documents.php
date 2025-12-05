@@ -21,8 +21,8 @@ class Documents extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'categoryId', 'name', 'description', 'url', 'createdBy',
-        'modifiedBy', 'isDeleted', 'location', 'isPermanentDelete'
+        'categoryId', 'name', 'description', 'url', 'createdBy','letter_no','letter_date',
+        'modifiedBy', 'isDeleted', 'location', 'isPermanentDelete','number_in','doc_from','dateline'
     ];
 
     public function categories()

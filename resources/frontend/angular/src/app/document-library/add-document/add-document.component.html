@@ -18,6 +18,38 @@
             <form [formGroup]="documentForm">
               <div class="row">
                 <div class="col-md-3">
+                  <label class="form-label">{{'Letter No' | translate}}</label>
+                  <input formControlName="letter_no" class="form-control" type="text">
+                  <div class="text-danger"
+                    *ngIf="documentForm.get('letter_no').touched && documentForm.get('letter_no')?.hasError('required')">
+                    {{'NAME_IS_REQUIRED' | translate}}
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">{{'From' | translate}}</label>
+                  <input formControlName="doc_from" class="form-control" type="text">
+                  <div class="text-danger"
+                    *ngIf="documentForm.get('doc_from').touched && documentForm.get('doc_from')?.hasError('required')">
+                    {{'FROM_IS_REQUIRED' | translate}}
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">{{'Dateline' | translate}}</label>
+                  <input formControlName="dateline" class="form-control" type="text">
+                  <div class="text-danger"
+                    *ngIf="documentForm.get('dateline').touched && documentForm.get('dateline')?.hasError('required')">
+                    {{'Dateline_IS_REQUIRED' | translate}}
+                  </div>
+                </div>
+                 <div class="col-md-3">
+                  <label class="form-label">{{'Numer In No' | translate}}</label>
+                  <input formControlName="number_in" class="form-control" type="text">
+                  <div class="text-danger"
+                    *ngIf="documentForm.get('number_in').touched && documentForm.get('number_in')?.hasError('required')">
+                    {{'Number_IN_IS_REQUIRED' | translate}}
+                  </div>
+                </div>
+                <div class="col-md-3">
                   <label class="form-label">{{'DOCUMENT_UPLOAD' | translate}}</label>
                   <input class="form-control" #file (change)="upload(file.files)" type="file">
                   <div *ngIf="documentForm.get('url').touched && documentForm.get('url')?.errors">
@@ -27,14 +59,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <label class="form-label">{{'NAME' | translate}}</label>
-                  <input formControlName="name" class="form-control" type="text">
-                  <div class="text-danger"
-                    *ngIf="documentForm.get('name').touched && documentForm.get('name')?.hasError('required')">
-                    {{'NAME_IS_REQUIRED' | translate}}
-                  </div>
-                </div>
+
                 <div class="col-md-3">
                   <label class="form-label">{{'CATEGORY' | translate}}</label>
                   <ng-select formControlName="categoryId" placeholder="{{'CATEGORY' | translate}}" [clearable]="false">
@@ -61,6 +86,14 @@
                     <ng-option [value]="'local'">{{'LOCAL' | translate}}</ng-option>
                     <ng-option *ngIf="isS3Supported" [value]="'s3'">{{'S3' | translate}}</ng-option>
                   </ng-select>
+                </div>
+                 <div class="col-md-3">
+                  <label class="form-label">{{'Name' | translate}}</label>
+                  <input formControlName="name" class="form-control" type="text">
+                  <div class="text-danger"
+                    *ngIf="documentForm.get('name').touched && documentForm.get('name')?.hasError('required')">
+                    {{'Name_IN_IS_REQUIRED' | translate}}
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">{{'DESCRIPTION' | translate}}</label>

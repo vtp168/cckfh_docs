@@ -136,6 +136,11 @@ export class AddDocumentComponent extends BaseComponent implements OnInit {
   createDocumentForm() {
     this.documentForm = this.fb.group({
       name: ['', [Validators.required]],
+      letter_no: [''],
+      letter_date: [''],
+      number_in: [''],
+      doc_from: [''],
+      dateline: [''],
       description: [''],
       categoryId: ['', [Validators.required]],
       url: ['', [Validators.required]],
@@ -232,7 +237,13 @@ export class AddDocumentComponent extends BaseComponent implements OnInit {
 
   buildDocumentObject(): DocumentInfo {
     const documentMetaTags = this.documentMetaTagsArray.getRawValue();
+    const rawDateline   = this.documentForm.get('dateline')?.value;
     const document: DocumentInfo = {
+      letter_no: this.documentForm.get('letter_no').value,
+      letter_date: this.documentForm.get('letter_date').value,
+      number_in: this.documentForm.get('number_in').value,
+      doc_from: this.documentForm.get('doc_from').value,
+      dateline: rawDateline ? new Date(rawDateline) : null,   // 👈 convert here
       categoryId: this.documentForm.get('categoryId').value,
       description: this.documentForm.get('description').value,
       name: this.documentForm.get('name').value,
