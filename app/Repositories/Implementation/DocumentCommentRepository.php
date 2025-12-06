@@ -18,7 +18,7 @@ class DocumentCommentRepository extends BaseRepository implements DocumentCommen
      * @var Model
      */
     protected $model;
-    
+
     /**
      * BaseRepository constructor..
      *
@@ -34,10 +34,10 @@ class DocumentCommentRepository extends BaseRepository implements DocumentCommen
 
     public function getDocumentComment($id)
     {
-        $query = DocumentComments::select(['documentComments.*', DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName")])
+        $query = DocumentComments::select(['documentComments.*', DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName,users.id as userId")])
             ->join('users', 'documentComments.createdBy', '=', 'users.id');
         $query = $query->where('documentId', $id);
-
+        $query = $query->orderBy('documentComments.createdAt', 'DESC');
         $results = $query->get();
 
         return $results;
