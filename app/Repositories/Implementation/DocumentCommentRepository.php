@@ -37,7 +37,7 @@ class DocumentCommentRepository extends BaseRepository implements DocumentCommen
         $query = DocumentComments::select(['documentComments.*', DB::raw("CONCAT(users.firstName,' ', users.lastName) as createdByName,users.id as userId")])
             ->join('users', 'documentComments.createdBy', '=', 'users.id');
         $query = $query->where('documentId', $id);
-        $query = $query->orderBy('documentComments.createdAt', 'DESC');
+        $query = $query->orderBy('documentComments.createdDate', 'DESC');
         $results = $query->get();
 
         return $results;
