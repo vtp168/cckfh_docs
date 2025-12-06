@@ -317,8 +317,11 @@ Route::get('/test', function () {
     return response()->json(['message' => 'API is working']);
 });
 
-Route::get('/view-document/{file_link}', function ($file_link) {
-    $path = storage_path("app/$file_link");
+Route::get('/viewdocument/{id}', function ($id) {
+
+    $doc = \App\Models\Documents::find($id);
+
+    $path = storage_path('app/' . $doc->url);
 
     if (!file_exists($path)) {
         abort(404);
@@ -326,3 +329,4 @@ Route::get('/view-document/{file_link}', function ($file_link) {
 
     return response()->file($path);
 });
+
