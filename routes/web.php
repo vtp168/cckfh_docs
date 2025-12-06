@@ -18,6 +18,17 @@ use App\Http\Controllers\AngularController;
 //     return view('angular');
 // });
 
+Route::get('/view-document/{file_link}', function ($file_link) {
+    $path = storage_path("app/$file_link");
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+});
+
+
 Route::any('/{any}', [AngularController::class, 'index'])
     ->where('any', '^(?!api).*$')
     ->where('any', '^(?!install|update).*$');
