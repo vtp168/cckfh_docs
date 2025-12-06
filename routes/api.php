@@ -316,3 +316,13 @@ Route::get('/i18n/{fileName}', [LanguageController::class, 'downloadFile']);
 Route::get('/test', function () {
     return response()->json(['message' => 'API is working']);
 });
+
+Route::get('/view-document/{file_link}', function ($file_link) {
+    $path = storage_path("app/$file_link");
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+});
