@@ -23,7 +23,9 @@ use App\Http\Controllers\RoleUsersController;
 use App\Http\Controllers\LoginAuditController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\UserNotificationController;
-use Auth;
+use Illuminate\Support\Facades\Auth; // ✅ correct
+use Illuminate\Http\Request;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 // check if user is authenticated
-Route::middleware('auth:api')->get('/auth/check', function (Request $request) {
+Route::get('/auth/check', function (Request $request) {
     return response()->json([
         'authenticated' => true,
         'user'          => $request->user(),
