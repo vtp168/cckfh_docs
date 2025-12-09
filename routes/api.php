@@ -40,6 +40,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('auth/logout', 'logout');
 });
 
+// check if user is authenticated
+Route::middleware('auth:sanctum')->get('/auth/check', function (Request $request) {
+    return response()->json([
+        'authenticated' => true,
+        'user'          => $request->user(),
+    ]);
+});
+
+
 Route::get('document/{id}/officeviewer', [DocumentController::class, 'officeviewer']);
 Route::get('/companyProfile', [CompanyProfileController::class, 'getCompanyProfile']);
 
