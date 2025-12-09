@@ -45,10 +45,21 @@ Route::controller(AuthController::class)->group(function () {
 
 // check if user is authenticated
 Route::get('/auth/check', function (Request $request) {
-    return response()->json([
-        'authenticated' => true,
-        'user'          => $request->user(),
-    ]);
+    if($request->user())
+    {
+
+        return response()->json([
+            'authenticated' => true,
+            'user'          => $request->user(),
+        ],200);
+    }
+    else{
+        return response()->json([
+            'authenticated' => true,
+            'user'          => $request->user(),
+        ],401);
+    }
+
 });
 
 
