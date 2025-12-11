@@ -26,6 +26,7 @@ use App\Http\Controllers\UserNotificationController;
 use Illuminate\Support\Facades\Auth; // ✅ correct
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\FCMTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('auth/login', 'login');
     Route::post('auth/logout', 'logout');
 });
+
+Route::post('/save-fcm-token', [FCMTokenController::class, 'store']);
+
 
 // check if user is authenticated
 Route::get('/auth/check', function (Request $request) {
