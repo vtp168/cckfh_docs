@@ -40,12 +40,12 @@ use App\Http\Controllers\Api\DeviceTokenController;
 |
 */
 
-// Route::post('/device-token', [DeviceTokenController::class,'store']);
-// Route::delete('/device-token', [DeviceTokenController::class,'destroy']);
+Route::post('/device-token', [DeviceTokenController::class,'store']);
+Route::delete('/device-token', [DeviceTokenController::class,'destroy']);
 
-// Route::post('/admin/send/user', [NotificationController::class,'sendToUserTokens']);
-// Route::post('/admin/send/all', [NotificationController::class,'sendToAll']);
-// Route::post('/admin/send/topic', [NotificationController::class,'sendToTopic']);
+Route::post('/admin/send/user', [NotificationController::class,'sendToUserTokens']);
+Route::post('/admin/send/all', [NotificationController::class,'sendToAll']);
+Route::post('/admin/send/topic', [NotificationController::class,'sendToTopic']);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('auth/login', 'login');
