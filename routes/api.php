@@ -26,7 +26,7 @@ use App\Http\Controllers\UserNotificationController;
 use Illuminate\Support\Facades\Auth; // ✅ correct
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
-use App\Http\Controllers\FCMTokenController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\DeviceTokenController;
 
 /*
