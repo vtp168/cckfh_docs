@@ -52,7 +52,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('auth/logout', 'logout');
 });
 
-Route::post('/save-fcm-token', [FCMTokenController::class, 'store']);
 
 
 // check if user is authenticated
