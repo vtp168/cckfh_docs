@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth; // ✅ correct
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\FCMTokenController;
+use App\Http\Controllers\Api\DeviceTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,13 @@ use App\Http\Controllers\FCMTokenController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('/device-token', [DeviceTokenController::class,'store']);
+Route::delete('/device-token', [DeviceTokenController::class,'destroy']);
+
+Route::post('/admin/send/user', [NotificationController::class,'sendToUserTokens']);
+Route::post('/admin/send/all', [NotificationController::class,'sendToAll']);
+Route::post('/admin/send/topic', [NotificationController::class,'sendToTopic']);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('auth/login', 'login');
