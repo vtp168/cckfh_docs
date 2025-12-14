@@ -9,6 +9,8 @@ use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\MulticastSendReport;
 use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging;
+use Kreait\Firebase\Factory;
+
 
 class FirebaseNotificationService
 {
@@ -24,6 +26,7 @@ class FirebaseNotificationService
 
         $factory = (new Factory)->withServiceAccount($credentials);
         $this->messaging = $factory->createMessaging();
+
     }
     /**
      * Send a notification to a single device token
