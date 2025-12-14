@@ -18,7 +18,7 @@ class DeviceTokenController extends Controller
         // If using auth: get user id; otherwise null
         $userId = optional($request->user())->id ?? null;
 
-        $token = $request->input('token');
+        $token = $request->input('deviceToken');
 
         $device = DeviceToken::updateOrCreate(
             ['token' => $token],
