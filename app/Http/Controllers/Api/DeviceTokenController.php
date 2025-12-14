@@ -16,7 +16,8 @@ class DeviceTokenController extends Controller
         ]);
 
         // If using auth: get user id; otherwise null
-        $userId = optional($request->user())->id ?? null;
+        //$userId = optional($request->user())->id ?? null;
+        $userId = Auth::id();
 
         $token = $request->input('deviceToken');
 
