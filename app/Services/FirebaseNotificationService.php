@@ -14,11 +14,17 @@ class FirebaseNotificationService
 {
     protected Messaging $messaging;
 
-    public function __construct(Messaging $messaging)
+    public function __construct()
     {
-        $this->messaging = $messaging;
-    }
+        $credentials = config('services.firebase.credentials');
 
+        if (!$credentials || !file_exists($credentials)) {
+            throw new \Exception('Firebase credentials file not found');
+        }
+
+        $factory = (new Factory)->withServiceAccount($credentials);
+        $this->messaging = $factory->createMessaging();
+    }
     /**
      * Send a notification to a single device token
      */
