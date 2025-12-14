@@ -12,8 +12,7 @@ class DeviceTokenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'token' => 'required|string',
-            'platform' => 'nullable|string'
+            'deviceToken' => 'required|string',
         ]);
 
         // If using auth: get user id; otherwise null
@@ -23,7 +22,7 @@ class DeviceTokenController extends Controller
 
         $device = DeviceToken::updateOrCreate(
             ['token' => $token],
-            ['user_id' => $userId, 'platform' => $request->platform, 'last_seen_at' => now()]
+            ['user_id' => $userId, 'platform' => 'android', 'last_seen_at' => now()]
         );
 
         return response()->json(['status' => 'ok', 'device' => $device], 200);
