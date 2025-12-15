@@ -32,14 +32,13 @@ class FirebaseNotificationService
     public function sendToTokens(array $tokens, string $title, string $body, array $data = [])
     {
         if (empty($tokens)) {
-            return ['error' => 'No device tokens'];
+            return ['success' => false, 'message' => 'No tokens'];
         }
 
         $message = CloudMessage::new()
             ->withNotification(Notification::create($title, $body))
             ->withData($data);
 
-        // Firebase SDK v6 compatible
         return $this->messaging->sendMulticast($message, $tokens);
     }
 }
